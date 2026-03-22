@@ -1,4 +1,13 @@
 import random
+import string
+
+def caracter_valido (letra):
+    resultado = False
+    let_lower = string.ascii_lowercase
+    if (letra in let_lower):
+        resultado = True
+    return resultado
+
 
 words = [
     "python",
@@ -39,15 +48,19 @@ while attempts > 0:
 
     letter = input("Ingresá una letra: ").lower()
 
-    if letter in guessed:
-        print("Ya usaste esa letra.")
-    elif letter in word:
-        guessed.append(letter)
-        print("¡Bien! Esa letra está en la palabra.")
+    if (caracter_valido(letter)==False):
+        print('Entrada no válida')
+        continue
     else:
-        guessed.append(letter)
-        attempts -= 1
-        print("Esa letra no está en la palabra.")
+        if letter in guessed:
+            print("Ya usaste esa letra.")
+        elif letter in word:
+            guessed.append(letter)
+            print("¡Bien! Esa letra está en la palabra.")
+        else:
+            guessed.append(letter)
+            attempts -= 1
+            print("Esa letra no está en la palabra.")
 
     print()
 else:
